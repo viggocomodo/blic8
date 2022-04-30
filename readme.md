@@ -1,8 +1,8 @@
 Blic 8 learning python
 Due Tuesday 24th May
 
-Program should include:
-Python computer code for drawing with animations; include sentence descriptions.
+##Program should include:
+- Python computer code for drawing with animations; include sentence descriptions.
 Use good coding practice and grammar.
 Do not copy and paste, write own code.
 List referances of code and video.
