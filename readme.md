@@ -14,5 +14,5 @@ Create construction report:
 - Describe how I finished the details.
 
 Programs used:
-Loom
+Loom - For screen recording
 I decided to us VS code for IDE (integrated development enviroment)
