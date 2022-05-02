@@ -15,3 +15,4 @@ Create construction report:
 
 Programs used:
 Loom
+I decided to us VS code for IDE (integrated development enviroment)
