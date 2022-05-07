@@ -16,3 +16,8 @@ Create construction report:
 Programs used:
 Loom - For screen recording
 I decided to us VS code for IDE (integrated development enviroment)
+
+Sources:
+https://www.youtube.com/watch?v=RarMTaALpGM
+https://www.youtube.com/watch?v=lc8NNJgeVjI
+https://www.youtube.com/watch?v=px6EoQjkK7c
