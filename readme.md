@@ -21,3 +21,5 @@ Sources:
 https://www.youtube.com/watch?v=RarMTaALpGM
 https://www.youtube.com/watch?v=lc8NNJgeVjI
 https://www.youtube.com/watch?v=px6EoQjkK7c
+I wanted to create a image backround, so i searched and found this
+https://stackoverflow.com/questions/43009527/how-to-insert-an-image-in-a-canvas-item
