@@ -17,9 +17,16 @@ Programs used:
 Loom - For screen recording
 I decided to us VS code for IDE (integrated development enviroment)
 
+My plan:
+Making the first part of the space invaders game.
+
+
 Sources:
 https://www.youtube.com/watch?v=RarMTaALpGM
 https://www.youtube.com/watch?v=lc8NNJgeVjI
 https://www.youtube.com/watch?v=px6EoQjkK7c
 I wanted to create a image backround, so i searched and found this
 https://stackoverflow.com/questions/43009527/how-to-insert-an-image-in-a-canvas-item
+
+How to move spaceship:
+https://www.youtube.com/watch?v=2rF8-jbTL-8
