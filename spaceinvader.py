@@ -60,8 +60,9 @@ def shooting():
 
     #Assign variable C to the coordinates of the ship
     c = canvas.coords("ship")
-    #Creates the shot
-    canvas.create_line(c[0],c[1] + 20,c[2],c[3],width=5,fill="yellow",tag="shot")
+    #Creates the shot. 
+    #I had a problem with the shot not being straight. So i messed around with the commands a bit and fixed it
+    canvas.create_line(c[0],c[1] + 20,c[0],c[1],width=5,fill="yellow",tag="shot")
     #Sets the loaded gun to 0 so it cannot fire
     loaded_gun = 0
     #call function and parse the shot name
