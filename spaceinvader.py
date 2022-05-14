@@ -12,14 +12,14 @@ tk.title("Space Invaders")
 canvas.pack(expand=YES, fill=BOTH)
 
 # Load the .gif image file.
-#bg = tk.PhotoImage(file='bg.gif')
+#bg = tk.PhotoImage(file='C:/Users/Viggo Piggle/Pictures/spaceshipgood.gif')
 
 # Put gif image on canvas.
 # Pic's upper-left corner (NW) on the canvas is at x=50 y=10.
 #canvas.create_image(50, 10, image=bg, anchor=NW)
 
-ship = canvas.create_rectangle(185, 570, 215, 600, fill="white", outline="red", tag="ship")
-
+#ship = canvas.create_rectangle(185, 570, 215, 600, fill="white", outline="red", tag="ship")
+ship = canvas.create_line(200, 570, 200, 600,width = 10, fill="white", tag="ship")
 global enemies
 enemies = []
 
@@ -38,7 +38,7 @@ enemies.append(enemy4)
 canvas.configure(bg='black')
 
 # Used to go left or right with keybinds
-def left(event):
+def left(event): 
     # Used "print" for troubleshooting
     print("Left key pressed")
     x = -10
@@ -60,9 +60,17 @@ def shooting():
 
     #Assign variable C to the coordinates of the ship
     c = canvas.coords("ship")
-    #Creates the shot. 
-    #I had a problem with the shot not being straight. So i messed around with the commands a bit and fixed it
-    canvas.create_line(c[0],c[1] + 20,c[0],c[1],width=5,fill="yellow",tag="shot")
+    print("c0", c[0])
+    print("c1", c[1])
+    print("c2", c[2])
+    print("c3", c[3])
+    
+
+    m = c[2]-c[0]-15
+    print("m", m)
+    #canvas.create_line(200,570,200,530,width=5,fill="red",tag="shot")
+    #Creates the shot
+    canvas.create_line(c[0],c[1] + 20,c[2],c[3],width=5,fill="yellow",tag="shot")
     #Sets the loaded gun to 0 so it cannot fire
     loaded_gun = 0
     #call function and parse the shot name
