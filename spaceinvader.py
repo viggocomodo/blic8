@@ -12,14 +12,16 @@ tk.title("Space Invaders")
 canvas.pack(expand=YES, fill=BOTH)
 
 # Load the .gif image file.
+
+shipgif = PhotoImage(file='C:/Users/Viggo Piggle/Pictures/spaceshipgood.gif')
 #bg = tk.PhotoImage(file='C:/Users/Viggo Piggle/Pictures/spaceshipgood.gif')
 
 # Put gif image on canvas.
 # Pic's upper-left corner (NW) on the canvas is at x=50 y=10.
-#canvas.create_image(50, 10, image=bg, anchor=NW)
 
 #ship = canvas.create_rectangle(185, 570, 215, 600, fill="white", outline="red", tag="ship")
 ship = canvas.create_line(200, 570, 200, 600,width = 10, fill="white", tag="ship")
+ship2 =canvas.create_image(200, 500, image=shipgif, anchor=NW,tag="ship2")
 global enemies
 enemies = []
 
@@ -36,6 +38,13 @@ enemy4 = canvas.create_rectangle(335, 0, 365, 30, fill="red", outline="black")
 enemies.append(enemy4)
 
 canvas.configure(bg='black')
+# I used the widget to put a score board
+widget = Label(canvas, text="score", score, fg="red", bg="black")
+widget.pack()
+#Tells the widget where it should be
+canvas.create_window(200, 100, window=widget)       
+
+
 
 # Used to go left or right with keybinds
 def left(event): 
@@ -44,17 +53,20 @@ def left(event):
     x = -10
     y = 0
     canvas.move(ship, x, y)
+    #shipx = shipx - 10
+    print("shipx = ", shipx )
         
 def right(event):
     print("Right key pressed")
     x = 10
     y = 0
     canvas.move(ship, x, y)
+    #shipx = shipx + 10
 
 def space(event):
     print("Space key pressed")
     shooting()
-
+#Makes so the gun can shoot
 def shooting():
     global loaded_gun
 
@@ -65,9 +77,6 @@ def shooting():
     print("c2", c[2])
     print("c3", c[3])
     
-
-    m = c[2]-c[0]-15
-    print("m", m)
     #canvas.create_line(200,570,200,530,width=5,fill="red",tag="shot")
     #Creates the shot
     canvas.create_line(c[0],c[1] + 20,c[2],c[3],width=5,fill="yellow",tag="shot")
