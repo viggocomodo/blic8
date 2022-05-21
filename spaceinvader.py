@@ -9,13 +9,12 @@ tk.title("Space Invaders")
 #canvas.pack()
 canvas.pack(expand=YES, fill=BOTH)
 
-# Load the .gif image file.
-shipgif = PhotoImage(file='C:/Users/Viggo Piggle/Pictures/spaceshipgood.gif')
+## Load the .gif image file.
+#shipgif = PhotoImage(file='C:/Users/Viggo Piggle/Pictures/spaceshipgood.gif')
+#ship2 =canvas.create_image(200, 500, image=shipgif, anchor=NW,tag="ship2")
 
 #ship = canvas.create_rectangle(185, 570, 215, 600, fill="white", outline="red", tag="ship")
-ship = canvas.create_line(200, 570, 200, 600,width = 10, fill="white", tag="ship")
-                          
-#ship2 =canvas.create_image(200, 500, image=shipgif, anchor=NW,tag="ship2")
+ship = canvas.create_line(200, 570, 200, 600,width = 10, fill="white", tag="ship")                         
 
 global enemies
 enemies = []
