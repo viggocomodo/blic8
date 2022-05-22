@@ -17,9 +17,10 @@ canvas.pack(expand=YES, fill=BOTH)
 ship = canvas.create_line(200, 570, 200, 600,width = 10, fill="white", tag="ship")                         
 
 global enemies
+#creates enemies array
 enemies = []
 
-#create enemy ships
+#create enemy ships and append to enemies array
 enemy1 = canvas.create_rectangle(35, 0, 65, 30, fill="red", outline="black")
 enemies.append(enemy1)
 
@@ -63,63 +64,85 @@ def space(event):
 #Makes so the gun can shoot
 def shooting():
     global loaded_gun
-
-    #Assign variable C to the coordinates of the ship
-    c = canvas.coords("ship")
-    print("c0", c[0]) #first value in an array is index 0
-    print("c1", c[1])
-    print("c2", c[2])
-    print("c3", c[3])
-    
-    #Creates the shot
-    canvas.create_line(c[0],c[1] + 20,c[2],c[3],width=5,fill="yellow",tag="shot")
-    #Sets the loaded gun to 0 so it cannot fire
     loaded_gun = 0
-    #call function and parse the shot name
+    #Assign variable C to the coordinates of the ship
+    shipCoords = canvas.coords("ship")
+    print("c0", shipCoords[0]) #first value in an array is index 0
+    print("c1", shipCoords[1])
+    print("c2", shipCoords[2])
+    print("c3", shipCoords[3])
+     
+    #Creates the shot 
+    canvas.create_line(shipCoords[0],shipCoords[1] + 20,shipCoords[2],shipCoords[3],width=5,fill="yellow",tag="shot")
+    #Sets the loaded gun to 0 so it cannot fire
+    
+    #call function with the shot name
     move_shot("shot")
+
+#animate the shot and detect if hits enemy
+def move_shot(shotName):                      
+    print("shotName =", shotName)
+    #access loaded gun variable 
+    global loaded_gun
+    #move the shot up (-10) pixels 
+    canvas.move(shotName,0,-10)
+    canvas.update()
+    #if loaded gun = 0 it means a shot is firing on the screen
+    if loaded_gun == 0:
+        shotCoords = canvas.coords(shotName) 
+        print("shotCoords =", shotCoords)
+
+        for enemy in enemies:
+            #Get coordinates of enemy ship
+            enemyCoords = canvas.coords(enemy)
+            #Calculate enemy ships width
+            enemywidth = enemyCoords[2] - enemyCoords[0]
+            print("enemywidth =", enemywidth)
+
+            #Testing if the shot hits enemy
+            #does the shot intersect x axis of an enemy
+            if enemyCoords[0] <= shotCoords[0] <= enemyCoords[0] +  enemywidth: 
+                print("shot is in line with enemy X coords", enemy)
+
+                #does the shot intersect y axis of an enemy
+                if shotCoords[1] <= enemyCoords[1] + enemywidth: 
+                    print("shotCoords[1]=", shotCoords[1])
+                    print("shot hits enemy", enemy)
+                    #shot hits enemy 
+                    #remove hit enemy from canvas
+                    canvas.delete(enemy) 
+                    #remove hit enemy from enemies array
+                    enemies.remove(enemy) 
+                    #deletes the shot from the canvas
+                    canvas.delete(shotName)
+                    #the shot is gone and now the gun is reloaded
+                    loaded_gun = 1
+                    #Calls the update score function
+                    update_score()
+                    break
+                
+        if shotCoords[1] < 0: 
+            #the shot is off the canvas so delete it
+            canvas.delete(shotName)
+            #reload the gun 
+            loaded_gun = 1 
+
+    #If the shot hasnt hit an enemy
+    if loaded_gun == 0:
+        #move shot wait 50 milliseconds 
+        tk.after(1000, move_shot, "shot")
 
 def update_score():
     global score
     score = score + 100
     print("score", score)
     widget.config(text=score)
-    
-def move_shot(name):
-    global loaded_gun
-    canvas.move(name,0,-10)
-    canvas.update()
-    if loaded_gun == 0:
-        shot = canvas.coords(name) 
-
-        for x in enemies:
-            #Get coordinates of enemy ship
-            en = canvas.coords(x)
-            #Calculate enemy ships width
-            enemywidth = en[2] - en[0]
-            print("enemywidth=", enemywidth)
-
-            #Test if shot hits enemy
-            if en[0] <= shot[0] <= en[0] +  enemywidth: 
-                if shot[1] <= en[1] + enemywidth: 
-                    #shot hits enemy 
-                    canvas.delete(x) 
-                    enemies.remove(x) 
-                    canvas.delete(name)
-                    loaded_gun = 1
-                    update_score()
-                    break
-                
-        if shot[1] < 0: 
-            canvas.delete(name) 
-            loaded_gun = 1 
-
-    if loaded_gun == 0: 
-        tk.after(50, move_shot, "shot")
 
 #Binds the key binds so you can move left or right   
 tk.bind("<Left>", left)
 tk.bind("<Right>", right)
 tk.bind("<space>", space)
+
 
 #Had to move this to the bottom for it to work
 canvas.pack(expand=YES, fill=BOTH)

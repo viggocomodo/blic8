@@ -30,3 +30,5 @@ https://stackoverflow.com/questions/43009527/how-to-insert-an-image-in-a-canvas-
 
 How to move spaceship:
 https://www.youtube.com/watch?v=2rF8-jbTL-8
+How to update a text label:
+https://www.youtube.com/watch?v=tqKyMDqp-3E
